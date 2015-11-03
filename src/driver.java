@@ -99,12 +99,32 @@ else if (!(a.charAt(i)==')'))
 			}
 			if(a.charAt(i)==')')
 			{
+				
+				
 				/*
-				 * while((!((char)ops.peek()=='(')
+				 * 
+				 * if(charAt[i]='(')
+				 * 
+				 * operator= ops.pop();
+				 * tree.insert(operator);
+				 * 
+				 * firstnum=nums.pop();
+				 * secondum=nums.pop();
+				 * tree.insert(firstnum);
+				 * tree.insert(secondum); 
+				 * 
+				 * while((char)ops.peek !='(')
 				 * {
 				 * 
+				 * operatornext= ops.pop();
+				 * tree.insert(operatornext)l
+				 * numnext= nums.pop();
+				 * tree.insert(numnext);
+				 * 
 				 * }
-				 *ops.pop();
+				 * ops.pop();
+				 * 
+				 * 
 				 */
 				
 				char childnode = (char) ops.pop();
