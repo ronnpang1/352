@@ -56,6 +56,9 @@ public class driver {
 		
 		int leftp=0;
 		int numops=0;
+		
+		
+			 
 		for(int i=0;i<a.length();i++)
 		{
 			
@@ -63,7 +66,9 @@ public class driver {
 			if(a.charAt(i)=='(')
 				
 			{
+				System.out.println("pushing"+" "+ a.charAt(i));
 				leftp++;
+				System.out.println(leftp);
 				ops.push(a.charAt(i));
 
 				
@@ -76,7 +81,9 @@ public class driver {
 if(a.charAt(i)== '+' ||a.charAt(i)== '-'||a.charAt(i)== '/'||a.charAt(i)== '*' ||a.charAt(i)== '<'||a.charAt(i)== '>')	
 				
 {
-	ops.push(a.charAt(i));
+	ops.push(a.charAt(i));//special case EX: (+(3*2)
+	System.out.println("pushing"+" "+ a.charAt(i));
+
 	numops++;
 	if(leftp==1)//OR IF  IF OPS.PEEK='('
 	{
@@ -88,103 +95,91 @@ if(a.charAt(i)== '+' ||a.charAt(i)== '-'||a.charAt(i)== '/'||a.charAt(i)== '*' |
 
 				
 }
-else if (!(a.charAt(i)==')'))
+else if (!(a.charAt(i)==')')&& !(a.charAt(i)=='('))
+{
+	//PUSH IF A NUMBER;
+	
 	nums.push(a.charAt(i));
-			
+	System.out.println("pushing"+" "+ a.charAt(i));
+
+			//IF ITS THE LAST PARANTHESES
 			if(a.charAt(i)==')' && i==a.length() -1 )
 			{
 				
 				return;
 				
 			}
+			
+		}
 			if(a.charAt(i)==')')
 			{
-				
-				
-				/*
-				 * 
-				 * if(charAt[i]='(')
-				 * 
-				 * operator= ops.pop();
-				 * tree.insert(operator);
-				 * 
-				 * firstnum=nums.pop();
-				 * secondum=nums.pop();
-				 * tree.insert(firstnum);
-				 * tree.insert(secondum); 
-				 * 
-				 * while((char)ops.peek !='(')
-				 * {
-				 * 
-				 * operatornext= ops.pop();
-				 * tree.insert(operatornext)l
-				 * numnext= nums.pop();
-				 * tree.insert(numnext);
-				 * 
-				 * }
-				 * ops.pop();
-				 * 
-				 * 
-				 */
-				
-				char childnode = (char) ops.pop();
-				System.out.println("Popping"+ " "+ childnode);
 
-				ops.pop();
-				leftp--;
-				char num1= (char) nums.pop();
-				System.out.println("Popping"+ " "+ num1);
 				
-				char num2= (char) nums.pop();
-				System.out.println("Popping"+ " "+ num2);
+				  
+				  char operator=(char) ops.pop();
+				  
+				  if(ops.isEmpty())
+				  {
+					  return;
+				  }
+				  
+				  else{
+					System.out.println("popping1"+" "+ operator);
 
-				if(tree.isLeftside()==false)
-				{
-				 tree.insert(num1);
-				 System.out.println("INSERTED");
-				 tree.insert(childnode);
-				 System.out.println("INSERTED");
-				 tree.insert(num2);
-				 System.out.println("INSERTED");
-				if((!((char)ops.peek()=='(')) && (!nums.isEmpty()))
-				{
+				  tree.insert(operator);
+				  
+				  char firstnum=(char)nums.pop();
+					System.out.println("popping1"+" "+ firstnum);
+
+				 
+
+				  tree.insert(firstnum);
+				  if(nums.isEmpty())
+				   continue;
+				   else
+				   {
+				  
+					   char secondum=(char)nums.pop();
+						System.out.println("popping1"+" "+ secondum);
+					   
+					   tree.insert(secondum); 
+				  
+				  
+				   }
+				  while((char)ops.peek() !='(')
+				  {
+
+				 char operatornext= (char) ops.pop();
+					System.out.println("popping1"+" "+ operatornext);
+
+				  tree.insert(operatornext);
+				  
+				 char numnext= (char) nums.pop();
+					System.out.println("popping1"+" "+ numnext);
+
+				  tree.insert(numnext);
+				  
+				  }
+				  System.out.println("EXITING");
+				  ops.pop();
+				  leftp--;
+
 				
-				char fathernode = (char) ops.pop();
-				tree.insert(fathernode);
-				char num3= (char) nums.pop();
-				tree.insert(num3);
-				if(!ops.isEmpty())
-				{
+				
+				
+				
 				
 				//treenode tree= new treenode(childnode,fathernode,num1,num2,num3,false);
-				}
-				}
 				
-				else
-				{
-					 tree.insert(childnode);
-					 System.out.println("INSERTED");
-					 tree.insert(num1);
-					 System.out.println("INSERTED");
-					 tree.insert(num2);
-					 System.out.println("INSERTED");
-					if((!((char)ops.peek()=='(')) && (!nums.isEmpty()))
-					{
-					
-					char fathernode = (char) ops.pop();
-					tree.insert(fathernode);
-					char num3= (char) nums.pop();
-					tree.insert(num3);
-					
-					
-					
 				}
 				
 				
 				
+				
+				
+			
+			
 			}
-			
-			
 			
 			
 			
@@ -195,7 +190,7 @@ else if (!(a.charAt(i)==')'))
 		
 		
 		
-		
-	}
+}
+	
 
-}}}
+}

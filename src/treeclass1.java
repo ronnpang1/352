@@ -67,74 +67,82 @@ public  void insert(char a)
 	if(counter%2==0&&counter!=0)
 	{
 		
-		//node= new node(a,null,head,null,null);
-		//counter++;
-		//System.out.println("inserting:"+" "+ a);	
-		//head.parent=node;
-		//head = node;
-		//leftside=true;
-		System.out.println("inserting:"+" "+ a);	
-
-		node=new node(a,head.prev,null,null);
-		head.prev.parent=node;                                                                                                                                                            
+		node= new node(a,null,head,null,null);
 		counter++;
-		head=node;
+		head.parent=node;
+		head = node;
 		leftside=true;
+		System.out.println("inserting:"+" "+ a);	
+		return;
+
+	
 	}
 	
 	else
 	{
 		
-	System.out.println("inserting:"+" "+ a);	
-	node=new node(a,null,head,null);
-	//if(head==null)
-	//{
-	//System.out.println("inserting:"+" "+ a);
-	//node= new node(a,null,null,null,null);
-	//head= node;
-	//}
-	//	public node(char a, node link, node left, node right, node parent)
-	
-	
-	
-	/*
-	 * 
-	 * if(head.right=null)
-	 * node=new node(a,null,null,null,head)
-	 * head.right=node;
-	 *
-	 * 
-	 * 
-	 * if(head.left=null)
-	 * node=new node(a,null,null,null,head)
-	 * head.left=node;
 
-	 * 
-	 * 
-	 * if(head.right!=null && head.left!=null)
-	 * {
-	 * 
-	 * 
-	 * node = new node(a,null,head,null,null)
-	 * head.parent = node;
-	 * head= node;
-	 * 
-	 * }
-	 * 
-	 * 
-	 * 
-	 */
-	if(!(head==null))
+	if(head==null)
+	{
+	System.out.println("inserting:"+" "+ a);
+	node= new node(a,null,null,null,null);
+	head= node;
+	return;
+	}
+		//public node(char a, node link, node left, node right, node parent)
+	
+	
+	
+	
+	 
+	  if(head.right==null)
+	  {
+			System.out.println("inserting:"+" "+ a);
+
+	  node=new node(a,null,null,null,head);
+	  head.right=node;
+		return;
+
+	  }
+	  
+	  if(head.left==null)
+	  {
+			System.out.println("inserting:"+" "+ a);
+
+	  node=new node(a,null,null,null,head);
+	  head.left=node;
+		return;
+
+	  }
+	  
+	  
+	  if(head.right!=null && head.left!=null)
+	  {
+	  
+			System.out.println("inserting:"+" "+ a);
+
+	  node = new node(a,null,head,null,null);
+	  head.parent = node;
+	  head= node;
+		return;
+
+	  }
+	  
+	  
+	  
+	 
+	/*if(!(head==null))
 	{
 		
 		head.link=node;
 		System.out.println("CHAR"+ " "+head.attr);
-	}
+	}*/
 	
 	
 	head=node;
 	counter++;
 	}
+	
 }
 	
 
