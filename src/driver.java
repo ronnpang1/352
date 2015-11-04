@@ -89,8 +89,13 @@ if(a.charAt(i)== '+' ||a.charAt(i)== '-'||a.charAt(i)== '/'||a.charAt(i)== '*' |
 	{
 		char childnode = (char) ops.pop();
 		System.out.println("popping"+" "+ childnode);
-		tree.insert(childnode);
-		
+		tree.insert(childnode,"ops","root");
+		if(!nums.isEmpty())
+		{
+			  char firstnum=(char)nums.pop();
+			  tree.insert(firstnum,"num",null);
+			
+		}
 	}
 
 				
@@ -115,6 +120,16 @@ else if (!(a.charAt(i)==')')&& !(a.charAt(i)=='('))
 			{
 
 				
+				
+					  char rootnode =  a.charAt(++i);
+					  
+					  System.out.println(rootnode);
+					  if(rootnode!=')')
+						  
+					  
+							tree.insert(rootnode,"ops","root");
+						    
+					  
 				  
 				  char operator=(char) ops.pop();
 				  
@@ -126,40 +141,43 @@ else if (!(a.charAt(i)==')')&& !(a.charAt(i)=='('))
 				  else{
 					System.out.println("popping1"+" "+ operator);
 
-				  tree.insert(operator);
+				  tree.insert(operator,"ops",null);
 				  
 				  char firstnum=(char)nums.pop();
 					System.out.println("popping1"+" "+ firstnum);
 
 				 
 
-				  tree.insert(firstnum);
-				  if(nums.isEmpty())
-				   continue;
-				   else
-				   {
-				  
-					   char secondum=(char)nums.pop();
-						System.out.println("popping1"+" "+ secondum);
-					   
-					   tree.insert(secondum); 
-				  
-				  
-				   }
+				  tree.insert(firstnum,"num",null);
+			}
 				  while((char)ops.peek() !='(')
 				  {
 
 				 char operatornext= (char) ops.pop();
 					System.out.println("popping1"+" "+ operatornext);
 
-				  tree.insert(operatornext);
+				  tree.insert(operatornext,"ops",null);
 				  
-				 char numnext= (char) nums.pop();
+				  	char numnext= (char) nums.pop();
 					System.out.println("popping1"+" "+ numnext);
 
-				  tree.insert(numnext);
+				  tree.insert(numnext,"num",null);
 				  
 				  }
+				  
+				  
+				  if(nums.isEmpty())
+					   continue;
+					   else
+					   {
+					  
+						   char secondum=(char)nums.pop();
+							System.out.println("popping1"+" "+ secondum);
+						   
+						   tree.insert(secondum,"num",null); 
+					  
+					  
+					   
 				  System.out.println("EXITING");
 				  ops.pop();
 				  leftp--;

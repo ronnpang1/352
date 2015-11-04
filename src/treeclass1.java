@@ -62,11 +62,11 @@ public class node {
 		
 		
 		
-public  void insert(char a)
+public  void insert(char a, String type, String string)
 {
-	if(counter%2==0&&counter!=0)
-	{
-		
+
+	/*	System.out.println("inserting op:"+" "+ a);
+
 		node= new node(a,null,head,null,null);
 		counter++;
 		head.parent=node;
@@ -74,19 +74,19 @@ public  void insert(char a)
 		leftside=true;
 		System.out.println("inserting:"+" "+ a);	
 		return;
-
+*/
 	
-	}
 	
-	else
-	{
+	
+	
 		
 
-	if(head==null)
+	if(head==null && string.equals("root"))
 	{
-	System.out.println("inserting:"+" "+ a);
+	System.out.println("inserting headnode:"+" "+ a);
 	node= new node(a,null,null,null,null);
 	head= node;
+	counter++;
 	return;
 	}
 		//public node(char a, node link, node left, node right, node parent)
@@ -97,33 +97,74 @@ public  void insert(char a)
 	 
 	  if(head.right==null)
 	  {
-			System.out.println("inserting:"+" "+ a);
 
 	  node=new node(a,null,null,null,head);
 	  head.right=node;
-		return;
+	  counter++;
+	  
+	  if(type.equals("ops"))
+	  {
+			System.out.println("inserting op right:"+" "+ a);
+			 head.right=node;
+			 head=node;
+		  
+	  }
+	  
+	  else
+	  {
+		  System.out.println("inserting right:"+" "+ a);
+	  }
+	  
+	  return;
 
 	  }
 	  
 	  if(head.left==null)
 	  {
-			System.out.println("inserting:"+" "+ a);
 
 	  node=new node(a,null,null,null,head);
 	  head.left=node;
+	  counter++;
+	  
+	  
+	  if(type.equals("ops"))
+	  {
+			System.out.println("inserting op left:"+" "+ a);
+			 head.right=node;
+			 head=node;
+		  
+	  }
+	  
+	  else
+	  {
+		  System.out.println("inserting left:"+" "+ a);
+	  }
+		
+
 		return;
 
 	  }
 	  
 	  
-	  if(head.right!=null && head.left!=null)
+	  if((head.right!=null && head.left !=null))
 	  {
-	  
+		  
+		  while(head.right!=null && head.left !=null)
+		  {
+			  
+			  
+			  head=head.parent;
+			  
+			  
+		  }
+		  System.out.println(head.attr+"ROOT");
 			System.out.println("inserting:"+" "+ a);
-
-	  node = new node(a,null,head,null,null);
-	  head.parent = node;
+			System.out.println("inserting op right:"+" "+ a);
+			
+	  node = new node(a,null,null,null,head);
+	 head.right=node;
 	  head= node;
+	  counter++;
 		return;
 
 	  }
@@ -141,7 +182,7 @@ public  void insert(char a)
 	
 	head=node;
 	counter++;
-	}
+	
 	
 }
 	
@@ -168,6 +209,9 @@ public void setLeftside(boolean leftside) {
 		
 		public char root(node  p)
 		{
+			
+			
+			
 			return head.attr;
 		
 		}
