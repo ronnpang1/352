@@ -4,7 +4,9 @@
 		public static node root=null;
 
 		private static node position;
-		private node node;
+		private static node node;
+		static node nodeclone;
+		private node headclone;
 		private boolean leftside=false;
 		public static int counter=-1;
 
@@ -87,6 +89,7 @@ public  void insert(char a, String type, String string)
 	System.out.println("inserting headnode:"+" "+ a);
 	node= new node(a,null,null,null);
 	root=node;
+	nodeclone=node;
 	head= node;
 	counter++;
 	return;
@@ -217,7 +220,7 @@ public void setLeftside(boolean leftside) {
 public static void inorder(node p)
 {
 
-//	System.out.println("blaze");
+
 
 	  if(p==null)
 	  {
@@ -226,12 +229,11 @@ public static void inorder(node p)
 	  
 	  else
 	  {
-         // inorder(p.parent);
           
            inorder(p.left);
            System.out.print(p.attr + " ");
            inorder(p.right);
-           //inorder(p.parent);
+          
 
        }
 
@@ -382,12 +384,45 @@ public static void inorder(node p)
 		public boolean isExternal(node p)
 		{
 			head=p;
-			
+		
 			if(head.left==null && head.right==null)
 				return true;
 			else
 			return false;
 		
+		}
+		
+		
+		public static void clone(node old,node copy)
+		{
+
+			
+			if(old==null)
+				return;
+			
+			
+			 if(!(old.left==null))
+			{
+				 System.out.println("attr1"+old.left.attr);
+				 	copy.left.attr=old.left.attr; 
+				 	copy.left.parent=copy;
+				  clone(old.left, copy.left);
+
+				  
+			}
+			
+			 if(!(old.right==null))
+			{
+				 System.out.println("attr2"+old.right.attr);
+
+				 copy.right.attr=old.right.attr;
+				 copy.right.parent=copy;
+
+				clone(old.right, copy.right);                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
+			}
+				
+			
+			
 		}
 		
 		public boolean isInternal(node p)

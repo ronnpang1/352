@@ -19,6 +19,7 @@ public class driver {
 	static treeclass1 tree = new treeclass1();
 
 
+	@SuppressWarnings("static-access")
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 
@@ -28,9 +29,14 @@ public class driver {
 		Scanner in = new Scanner(System.in);
 		String operation = in.nextLine();
 		decompose(operation);
-		System.out.println("Element at 5:" + " " + treeclass1.getElement(9).attr);
-		treeclass1.inorder(treeclass1.root);		//System.out.println("IS EXTRENAL?:" + " " +treeclass1.isExternal((treeclass1.getElement(9))));
-
+		System.out.println("Element at 5:" + " " + tree.getElement(9).attr);;
+		tree.inorder(treeclass1.root);		//System.out.println("IS EXTRENAL?:" + " " +treeclass1.isExternal((treeclass1.getElement(9))));
+		tree.clone(tree.root,tree.nodeclone);
+		System.out.println(" ");		//System.out.println("IS EXTRENAL?:" + " " +treeclass1.isExternal((treeclass1.getElement(9))));
+	tree.inorder(treeclass1.nodeclone);
+		//System.out.println("left"+tree.nodeclone.right.left.attr);
+		
+		
 		//System.out.print(treeclass1.gettest()); ((3*9*9*9)*(((2*3*4) + (3*2))))
 		
 		/*for(int i=0;i<ops.size();i++)
