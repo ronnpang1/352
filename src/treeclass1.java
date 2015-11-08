@@ -1,14 +1,16 @@
 	public class treeclass1 {
 		
-		private node head=null;
-		private node position;
+		private static node head=null;
+		public static node root=null;
+
+		private static node position;
 		private node node;
 		private boolean leftside=false;
 		public static int counter=-1;
 
 		
 		
-public class node {
+public class  node <E> {
 	
 
 	
@@ -29,18 +31,9 @@ public class node {
 		parent=null;
 		
 	}
-	public node(char a, node link, node prev, node parent)
-	{
-		
-		attr=a;
-		this.parent=parent;
-		this.prev=prev;
-		this.link=link;
-		
-	}
+
 	
-	
-	public node(char a, node link, node left, node right, node parent)
+	public node(char a, node left, node right, node parent)
 	{
 		
 	this.attr=a;
@@ -52,7 +45,8 @@ public class node {
 	
 	
 	
-	public node(char a, char b, char c, boolean empty) {
+	public node(char a, char b, char c, boolean empty) 
+	{
 		
 		
 	}
@@ -64,6 +58,7 @@ public class node {
 		
 public  void insert(char a, String type, String string)
 {
+	
 
 	/*	System.out.println("inserting op:"+" "+ a);
 
@@ -76,6 +71,11 @@ public  void insert(char a, String type, String string)
 		return;
 */
 	
+	if(head!=null)
+	
+		System.out.println("HEAD:"+ " "+ head.attr);
+
+		
 	
 	
 	
@@ -83,8 +83,10 @@ public  void insert(char a, String type, String string)
 
 	if(head==null && string.equals("root"))
 	{
+	
 	System.out.println("inserting headnode:"+" "+ a);
-	node= new node(a,null,null,null,null);
+	node= new node(a,null,null,null);
+	root=node;
 	head= node;
 	counter++;
 	return;
@@ -97,15 +99,14 @@ public  void insert(char a, String type, String string)
 	 
 	  if(head.right==null)
 	  {
-
-	  node=new node(a,null,null,null,head);
+	  
+	  node=new node(a,null,null,head);
 	  head.right=node;
-	  counter++;
 	  
 	  if(type.equals("ops"))
 	  {
+		  System.out.println("PREV NODE: " + " " + head.attr);
 			System.out.println("inserting op right:"+" "+ a);
-			 head.right=node;
 			 head=node;
 		  
 	  }
@@ -113,6 +114,8 @@ public  void insert(char a, String type, String string)
 	  else
 	  {
 		  System.out.println("inserting right:"+" "+ a);
+		  System.out.println("PREV NODE: " + " " + head.attr);
+
 	  }
 	  
 	  return;
@@ -121,16 +124,19 @@ public  void insert(char a, String type, String string)
 	  
 	  if(head.left==null)
 	  {
+		  System.out.println("PREV NODE: " + " " + head.attr);
 
-	  node=new node(a,null,null,null,head);
+	  node=new node(a,null,null,head);
 	  head.left=node;
 	  counter++;
 	  
 	  
 	  if(type.equals("ops"))
 	  {
+		  
 			System.out.println("inserting op left:"+" "+ a);
-			 head.right=node;
+			  System.out.println("PREV NODE: " + " " + head.attr);
+
 			 head=node;
 		  
 	  }
@@ -138,18 +144,18 @@ public  void insert(char a, String type, String string)
 	  else
 	  {
 		  System.out.println("inserting left:"+" "+ a);
+		  System.out.println("PREV NODE: " + " " + head.attr);
+
 	  }
-		
-
 		return;
-
 	  }
 	  
 	  
 	  if((head.right!=null && head.left !=null))
 	  {
-		  
-		  while(head.right!=null && head.left !=null)
+		  System.out.println(head.right.attr);
+		  System.out.println(head.left.attr);
+		  while(!(head.right==null || head.left ==null))
 		  {
 			  
 			  
@@ -157,38 +163,47 @@ public  void insert(char a, String type, String string)
 			  
 			  
 		  }
-		  System.out.println(head.attr+"ROOT");
+		  System.out.println("right"+ head.right.attr);
+		  if(head.right==null)
+		  {
+			  System.out.println(head.attr+"ROOT");
 			System.out.println("inserting:"+" "+ a);
 			System.out.println("inserting op right:"+" "+ a);
 			
-	  node = new node(a,null,null,null,head);
-	 head.right=node;
-	  head= node;
-	  counter++;
+			
+			  node = new node(a,null,null,head);
+			 head.right=node;
+			  head= node;
+			  counter++;
+		  }
+		  
+		  if(head.left==null)
+		  {
+		  System.out.println(head.attr+"ROOT");
+			System.out.println("inserting:"+" "+ a);
+			System.out.println("inserting op left:"+" "+ a);
+			
+			  node = new node(a,null,null,head);
+			  head.left=node;
+			  head= node;
+		  }
+	
 		return;
 
 	  }
 	  
 	  
-	  
-	 
-	/*if(!(head==null))
-	{
-		
-		head.link=node;
-		System.out.println("CHAR"+ " "+head.attr);
-	}*/
-	
+
 	
 	head=node;
-	counter++;
+	
+	
 	
 	
 }
 	
 
-
-		public boolean isLeftside() {
+public boolean isLeftside() {
 	return leftside;
 }
 
@@ -199,20 +214,96 @@ public void setLeftside(boolean leftside) {
 }
 
 
+public static void inorder(node p)
+{
 
-		public node getElement()
+//	System.out.println("blaze");
+
+	  if(p==null)
+	  {
+		  return;
+	  }
+	  
+	  else
+	  {
+         // inorder(p.parent);
+          
+           inorder(p.left);
+           System.out.print(p.attr + " ");
+           inorder(p.right);
+           //inorder(p.parent);
+
+       }
+
+
+				
+}
+
+		public static node getElement(int i)
 		{
+			position=head;
+			for(int k = 0;k<i;k++)
+			{
+			while(position.parent!=null)
+				
+				{
+					position=position.parent;
+				}
+			
+			while(position.left!=null)
+			{
+				
+				position=position.left;
+				
+			}
+			
+			if(position.right!=null && position.left!=null)
+			{
+				head=position.right;
+				while(position.left!=null)
+				{
+					
+					head= position.left;
+				}
+				
+			}
+			
+			else if(position.right!=null && position.left!=null && position.parent.left.attr == position.attr)
+	{
+		
+				head=position.parent;
+		
+	}
+			
+			
+			else if(position.right!=null && position.left!=null && position.parent.right.attr == position.attr)
+			{
+				
+				head=position.parent.parent;
+				
+			}
+			
+			
+			
+						
+						head=position;
+				
+			
+			}
 			return head;
 		
 		}
 		
 		
-		public char root(node  p)
+		public boolean root(int i)
 		{
+			head=getElement(i);
 			
+			if(head.parent==null)
+			return true;
 			
-			
-			return head.attr;
+			else
+			return false;
 		
 		}
 		
@@ -224,9 +315,15 @@ public void setLeftside(boolean leftside) {
 		
 		
 	
-		public node parent()
+		public node parent(int i)
 		{
-			return head;
+			head=getElement(i);
+			
+			if(head.parent==null)
+				return null;
+			
+				else 
+					return head.parent;
 		
 		}
 		public node children(node p)
@@ -235,22 +332,46 @@ public void setLeftside(boolean leftside) {
 		
 		}
 		
-		public node numchildren(node p)
+		public int numchildren(int i)
 		{
-			return head;
+			head= getElement(i);
+			if(head.left!=null && head.right!=null)
+			return 2;
+			
+			else
+				return 0;
 		
 		}
-		public node left(node p)
+		public node left(int i)
 		{
-			return head;
+			head=getElement(i);
+			if(head.left!=null)
+			{
+				head=head.left;
+				return head;
+			}
+			
+			else
+				return null;
+				
 		
 		}
 		
-		public node right(node p)
+		public node right(int i)
 		{
-			return head;
+			head=getElement(i);
+			if(head.right!=null)
+			{
+				head=head.right;
+				return head;
+			}
+			
+			else
+				return null;
+				
 		
 		}
+		
 		
 		public node siblings(node p)
 		{
@@ -258,15 +379,26 @@ public void setLeftside(boolean leftside) {
 		
 		}
 		
-		public node isExternal(node p)
+		public boolean isExternal(node p)
 		{
-			return head;
+			head=p;
+			
+			if(head.left==null && head.right==null)
+				return true;
+			else
+			return false;
 		
 		}
 		
-		public node isInternal(node p)
+		public boolean isInternal(node p)
 		{
-			return head;
+			
+			head=p;
+			
+			if(head.left!=null || head.right!=null)
+				return true;
+			else
+			return false;
 		
 		}
 		

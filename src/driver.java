@@ -28,7 +28,10 @@ public class driver {
 		Scanner in = new Scanner(System.in);
 		String operation = in.nextLine();
 		decompose(operation);
-		//System.out.print(treeclass1.gettest());
+		System.out.println("Element at 5:" + " " + treeclass1.getElement(9).attr);
+		treeclass1.inorder(treeclass1.root);		//System.out.println("IS EXTRENAL?:" + " " +treeclass1.isExternal((treeclass1.getElement(9))));
+
+		//System.out.print(treeclass1.gettest()); ((3*9*9*9)*(((2*3*4) + (3*2))))
 		
 		/*for(int i=0;i<ops.size();i++)
 		{
@@ -105,10 +108,10 @@ else if (!(a.charAt(i)==')')&& !(a.charAt(i)=='('))
 	//PUSH IF A NUMBER;
 	
 	nums.push(a.charAt(i));
-	System.out.println("pushing"+" "+ a.charAt(i));
+	System.out.println("pushing number"+" "+ a.charAt(i));
 
 			//IF ITS THE LAST PARANTHESES
-			if(a.charAt(i)==')' && i==a.length() -1 )
+			if(a.charAt(i)==')' && i==a.length()-1 && nums.isEmpty())
 			{
 				
 				return;
@@ -116,19 +119,22 @@ else if (!(a.charAt(i)==')')&& !(a.charAt(i)=='('))
 			}
 			
 		}
+//((3*9*9*9)-((2/3*4)+(3*2)))
+
 			if(a.charAt(i)==')')
 			{
 
 				
-				
+				try{
 					  char rootnode =  a.charAt(++i);
+				
 					  
 					  System.out.println(rootnode);
+					  
 					  if(rootnode!=')')
 						  
-					  
+					  {
 							tree.insert(rootnode,"ops","root");
-						    
 					  
 				  
 				  char operator=(char) ops.pop();
@@ -165,10 +171,12 @@ else if (!(a.charAt(i)==')')&& !(a.charAt(i)=='('))
 				  
 				  }
 				  
-				  
+				  //						    //((3*9*9*9)-((2/3*4)+(3*2)))
+
 				  if(nums.isEmpty())
 					   continue;
-					   else
+				  
+					   else 
 					   {
 					  
 						   char secondum=(char)nums.pop();
@@ -176,34 +184,93 @@ else if (!(a.charAt(i)==')')&& !(a.charAt(i)=='('))
 						   
 						   tree.insert(secondum,"num",null); 
 					  
-					  
-					   
 				  System.out.println("EXITING");
 				  ops.pop();
 				  leftp--;
-
-				
-				
-				
-				
-				
-				//treenode tree= new treenode(childnode,fathernode,num1,num2,num3,false);
+				  //treenode tree= new treenode(childnode,fathernode,num1,num2,num3,false);
 				
 				}
+				}
+					  
+					  
+					  else
+					  {
+						  
+						 
+						  
+						  if(ops.isEmpty())
+						  {
+							  return;
+						  }
+						  
+						  else{
+							  char operator=(char) ops.pop();
+							System.out.println("popping1"+" "+ operator);
+
+						  tree.insert(operator,"ops",null);
+						  
+						  char firstnum=(char)nums.pop();
+							System.out.println("popping1"+" "+ firstnum);
+
+						 
+
+						  tree.insert(firstnum,"num",null);
+					}
+						  while((char)ops.peek() !='(')
+						  {
+
+						 char operatornext= (char) ops.pop();
+							System.out.println("popping1"+" "+ operatornext);
+
+						  tree.insert(operatornext,"ops",null);
+						  
+						  	char numnext= (char) nums.pop();
+							System.out.println("popping1"+" "+ numnext);
+
+						  tree.insert(numnext,"num",null);
+						  
+						  }
+						  
+						  
+						  if(nums.isEmpty())
+							   continue;
+						  
+							   else 
+							   {
+							  
+								   char secondum=(char)nums.pop();
+									System.out.println("popping1"+" "+ secondum);
+								   
+								   tree.insert(secondum,"num",null); 
+							  
+						  System.out.println("EXITING");
+						  ops.pop();
+						  leftp--;
+						  //treenode tree= new treenode(childnode,fathernode,num1,num2,num3,false);
+						
+						}
+						  
+						  
+						  
+						  
+					  }
+				}
+			catch(IndexOutOfBoundsException e)
+			{
 				
 				
 				
 				
 				
-			
-			
 			}
-			
-			
-			
 				
 			
 			
+			
+		}
+			
+		
+		
 		}
 		
 		
