@@ -36,6 +36,8 @@ public class driver {
 	tree.inorder(treeclass1.nodeclone);
 	
 	System.out.println("counter:" + tree.numleaf(tree.root));
+	System.out.println("height:" + tree.height(tree.root));
+	
 		//System.out.println("left"+tree.nodeclone.right.left.attr);
 		
 		

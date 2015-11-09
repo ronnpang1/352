@@ -468,10 +468,15 @@ public static void inorder(node p)
 		
 		}
 		
-		public node height()
+		public int height(node p)
 		{
 			
-			return head;
+			if(p==null)
+				return 0;
+			
+			else return Math.max(height(p.left),height(p.right))+1;
+			
+			
 		
 		}
 		
