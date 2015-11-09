@@ -2,7 +2,7 @@
 		
 		private static node head=null;
 		public static node root=null;
-
+		public static int leafnode=0;
 		private static node position;
 		private static node node;
 		static node nodeclone;
@@ -414,11 +414,9 @@ public static void inorder(node p)
 			 if(!(old.right==null))
 			{
 				 System.out.println("attr2"+old.right.attr);
-
 				 copy.right.attr=old.right.attr;
 				 copy.right.parent=copy;
-
-				clone(old.right, copy.right);                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
+				 clone(old.right, copy.right);                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
 			}
 				
 			
@@ -439,37 +437,70 @@ public static void inorder(node p)
 		
 		
 		
-		public node size()
+		public static void size(node p)
 		{
-			return head;
+			
+			if(p==null)
+				return;
+		
+				else
+				{
+					leafnode++;
+					size(p.left);
+					size(p.right);
+					
+					
+				}
+			
+			
+			
+			
+			
 		
 		}
 		
-		public node isEmpty()
+		public boolean isEmpty()
 		{
-			return head;
+			if(root.left==null && root.right==null )
+				return true;
+			else
+				return false;
 		
 		}
 		
 		public node height()
 		{
+			
 			return head;
 		
 		}
 		
-		public node numleaf()
+		public static void numleaf(node p)
 		{
-			return head;
+			
+			if(p==null)
+			{
+				leafnode++;
+				return;
+			}
+		
+				else
+				{
+					
+					numleaf(p.left);
+					numleaf(p.right);
+					
+					
+				}
+			
+			
+			
+			
+			
 		
 		}
 		
 
-		public node clone()
-		{
-			return head;
-		
-		}
-		
 
 		public node postions()
 		{
