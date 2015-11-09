@@ -475,13 +475,13 @@ public static void inorder(node p)
 		
 		}
 		
-		public static void numleaf(node p)
+		public static int numleaf(node p)
 		{
 			
-			if(p==null)
+			if(p.left==null && p.right==null)
 			{
 				leafnode++;
-				return;
+				
 			}
 		
 				else
@@ -492,6 +492,7 @@ public static void inorder(node p)
 					
 					
 				}
+			return leafnode;
 			
 			
 			

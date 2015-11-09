@@ -34,8 +34,8 @@ public class driver {
 		tree.clone(tree.root,tree.nodeclone);
 		System.out.println(" ");		//System.out.println("IS EXTRENAL?:" + " " +treeclass1.isExternal((treeclass1.getElement(9))));
 	tree.inorder(treeclass1.nodeclone);
-	tree.numleaf(tree.root);
-	System.out.println("counter:" + tree.leafnode/2);
+	
+	System.out.println("counter:" + tree.numleaf(tree.root));
 		//System.out.println("left"+tree.nodeclone.right.left.attr);
 		
 		
